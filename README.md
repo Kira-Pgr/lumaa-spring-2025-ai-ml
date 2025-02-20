@@ -29,7 +29,7 @@ or [click here](https://drive.google.com/file/d/1c9St2tpcO9zL9_ISfEaQ35hFO4k0WaD
 2. Create conda environment:
    
    ```bash
-   conda create -n movie_search_engine python=3.11
+   conda create -n movie_search_engine python=3.10.14
    conda activate movie_search_engine
    ```
 3. Install the required dependencies:

@@ -3,12 +3,17 @@
 import streamlit as st
 import pandas as pd
 from search_engine import SentenceTransformerSearchEngine
+import torch
+
+torch.classes.__path__ = []
 
 st.set_page_config(
     page_title="Movie Search Engine",
 )
 
 st.title("Semantic Movie Search Engine")
+st.markdown(
+    """On first run, the search engine will take a while to load and download the embedding model. Please be patient.""")
 
 @st.cache_resource
 def index_documents():

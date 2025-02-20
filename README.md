@@ -57,7 +57,8 @@ The system uses a movie dataset (`dataset.csv`) with 500 rows that contains two 
    streamlit run webui.py
    ```
    
-   If ran successfully, it will automatically open a new browser window displaying webui.
+   If ran successfully, it will automatically open a new browser window displaying webui.  \
+   *Note: On first run, the search engine will take a while to load and download the embedding model. Please be patient.*
 
 2. Enter your search query and adjust the number of results as needed
 

@@ -1,91 +1,85 @@
-# AI/Machine Learning Intern Challenge: Simple Content-Based Recommendation
+# Semantic Movie Search Engine
 
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
+A content-based movie recommendation system that uses sentence transformers to convert movie descriptions and queries into embeddings, then finds the most semantically similar matches.
 
----
+## Features
 
-## Overview
+1. Semantic similarity matching using sentence transformers
+2. WebUI built with Streamlit
+3. Command line interface
 
-Build a **content-based recommendation system** that, given a **short text description** of a user’s preferences, suggests **similar items** (e.g., movies) from a small dataset. This challenge should take about **3 hours**, so keep your solution **simple** yet **functional**.
+## Implementation Details
 
-### Example Use Case
+1. The search engine uses the `nomic-ai/nomic-embed-text-v1.5` model to create embeddings for both the movie descriptions and search queries. 
+2. It uses cosine similarity to find the most relevant matches.
 
-- The user inputs:  
-  *"I love thrilling action movies set in space, with a comedic twist."*  
-- Your system processes this description (query) and compares it to a dataset of items (e.g., movies with their plot summaries or keywords).  
-- You then return the **top 3–5 “closest” matches** to the user.
+### Installation
 
----
+1. Clone the repository:
+   
+   ```bash
+   git clone https://github.com/Kira-Pgr/lumaa-spring-2025-ai-ml.git
+   cd lumaa-spring-2025-ai-ml
+   ```
 
-## Requirements
+2. Install the required dependencies:
+   
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-1. **Dataset**  
-   - Use a **small** public dataset of items (e.g., a list of movies with plot summaries, or other textual descriptions).  
-   - Make sure the dataset is easy to handle (maybe 100–500 rows) so the solution remains quick to implement and run.  
-   - Include the dataset in your forked repository *or* provide instructions/link on how to download it.  
+### Dataset
 
-2. **Approach**  
-   - **Content-Based**: At a minimum, use text similarity to recommend items.  
-     - For instance, you can transform both the user’s text input and each item’s description into TF-IDF vectors and compute **cosine similarity**.  
-   - Return the **top N** similar items (e.g., top 5).
+The system uses a movie dataset (`dataset.csv`) with 500 rows that contains two main columns:
 
-3. **Code Organization**  
-   - You may use a **Jupyter Notebook** or **Python scripts**.  
-   - Keep it **readable** and **modular** (e.g., one section for loading data, one for building vectors, one for computing similarity, etc.).  
-   - Briefly comment or docstring your key functions/sections.
+- `Title`: The name of the movie
+- `PlotSummary`: A text description of the movie's plot
 
-4. **Output**  
-   - When given an input description (e.g., `"I like action movies set in space"`), your system should print or return a list of recommended items (e.g., 3–5 titles).  
-   - Include the similarity score or rank if you’d like.
+Make sure the `dataset.csv` file is in the root directory of the project.
 
-5. **Summary & Instructions**  
-   - A short `README.md` that includes:
-     - **Dataset**: Where it’s from, any steps to load it.  
-     - **Setup**: Python version, virtual environment instructions, and how to install dependencies (`pip install -r requirements.txt`).  
-     - **Running**: How to run your code (e.g., `python recommend.py "Some user description"` or open your notebook in Jupyter).  
-     - **Results**: A brief example of your system’s output for a sample query.
+### Usage
 
----
+#### Option 1: Web Interface
 
-## Deliverables
+1. Start the Streamlit web interface:
+   
+   ```bash
+   streamlit run webui.py
+   ```
+   
+   If ran successfully, it will automatically open a new browser window displaying webui.
 
-1. **Fork the Public Repository**  
-   - **Fork** this repo into your own GitHub account.
+2. Enter your search query and adjust the number of results as needed
 
-2. **Implement Your Solution**  
-   - Load and preprocess your dataset (e.g., read CSV, handle text columns).  
-   - Convert text data to vectors (e.g., TF-IDF).  
-   - Implement a function to compute similarity between the user’s query and each item’s description.  
-   - Return the top matches.
-   - Salary expectation per month (Mandatory)
+3. 
 
-3. **Short Video Demo**  
-   - In a `.md` file (e.g., `demo.md`) within your fork, paste a link to a **brief screen recording** (video link).  
-   - Demonstrate:
-     - How you run the recommendation code.  
-     - A sample query and the results.
+#### Option 2: CLI
 
-4. **Deadline**  
-   - Submit your fork by **Sunday, Feb 23th 11:59 pm PST**.
+To use the command line interface:
 
-> **Note**: This should be doable within ~3 hours. Keep it **straightforward**—you do **not** need advanced neural networks or complex pipelines. A simple TF-IDF + cosine similarity approach is sufficient.
+```bash
+python search_engine.py -q "movies about love" -k 5
+```
 
----
+This will run a sample search with the query "movies about love". 
 
-## Evaluation Criteria
+##### Example Output
 
-1. **Functionality**  
-   - Does your code run without errors?  
-   - When given an input query, does it successfully output relevant items?
+```
+Search Results:
+Title:  Angst, Summary: Angst tells the story of a group of horror film devotees living in Sydney's King's Cross. It has been described as an Australian version of Kevin Smith's Clerks and Mallrats with the same Dark humor as SubUrbia. The film stars Sam Lewis as a cynical, sexually frustrated video store employee with a bad case of unresolved love., Similarity: 0.627
+Title: Dolls, Summary: The film is not in strict chronological order, but there is a strong visual emphasis on the changing of the seasons and the bonds of love over the progression of time. The film leads into it by opening with a performance of Bunraku theatre, and closes with a shot of dolls from the same., Similarity: 0.626
+```
 
-2. **Code Quality**  
-   - Clear, commented code (where it counts).  
-   - Logical steps (load data → transform → recommend).
+### Video Demo
 
-3. **Clarity**  
-   - Is your `README.md` straightforward about setup, how to run, and what to expect?
+![Demo](videos/demo.gif)
 
-4. **ML/Recommendation Understanding**  
-   - Basic implementation of a content-based recommendation approach (vectorization, similarity measure).
+### Project Structure
 
-**We look forward to seeing your solution!** Good luck!
+- `search_engine.py`: Core search functionality and CLI interface
+- `webui.py`: Streamlit web interface
+- `dataset.csv`: Movie dataset
+- `requirements.txt`: Python dependencies
+- `videos/`: Directory for video demonstrations
+- `README.md`: README file

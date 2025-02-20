@@ -9,7 +9,7 @@ import argparse
 
 class SentenceTransformerSearchEngine:
     def __init__(self, model_name="nomic-ai/nomic-embed-text-v1.5"):
-        """Load the sentence transformer model.
+        """Load the sentence transformer model
         
         Args:
             model_name (str): The name of the model to use
@@ -39,7 +39,7 @@ class SentenceTransformerSearchEngine:
             top_k (int): The number of top results to return
             
         Returns:
-            tuple: (DataFrame with results, similarity scores)
+            search results (tuple): (DataFrame with results, similarity scores)
         """
         if self.embeddings is None or self.dataset is None:
             raise ValueError("Dataset not loaded.")
@@ -83,10 +83,8 @@ def main():
     parser.add_argument('-d', '--dataset', type=str, default='dataset.csv',
                         help='Path to the dataset CSV file (default: dataset.csv)')
 
-    # Parse arguments
     args = parser.parse_args()
 
-    # Initialize and run search engine
     search_engine = SentenceTransformerSearchEngine()
     search_engine.load_data(args.dataset)
     results_df, sim_scores = search_engine.search(args.query, args.top_k)
